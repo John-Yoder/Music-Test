@@ -19,13 +19,13 @@ global_params = {
     "bass_volume": 0.5,
     "drum_volume": 0.5,
     "noise_level": 0.5,
-    "tempo": 70,
+    "tempo": 100,
     "chord_dissonance": 0.5,
     "chord_extensions": 0.5,
     "drum_busyness": 0.5,
     # We'll default mode_cycle_speed to a small value (0.05) => very rare random mode changes
     "mode_cycle_speed": 0.05,
-    "current_mode": "major",
+    "current_mode": "minor",
     "key_root_midi": 48,
     # Synth volume for the new sweeping pad
     "synth_volume": 0.4,
@@ -299,7 +299,6 @@ MODE_SCALE_OFFSETS = {
     "phrygian":    [0, 1, 3, 5, 7, 8, 10],
     "lydian":      [0, 2, 4, 6, 7, 9, 11],
     "mixolydian":  [0, 2, 4, 5, 7, 9, 10],
-    "aeolian":     [0, 2, 3, 5, 7, 8, 10],  # natural minor
     "locrian":     [0, 1, 3, 5, 6, 8, 10]
 }
 
@@ -615,7 +614,7 @@ class LofiUI:
         self.add_slider(f, "Bass Volume", "bass_volume", 0, 1, 0.5)
         self.add_slider(f, "Drum Volume", "drum_volume", 0, 1, 0.5)
         self.add_slider(f, "Vinyl Noise", "noise_level", 0, 1, 0.5)
-        self.add_slider(f, "Tempo (BPM)", "tempo", 40, 160, 70)
+        self.add_slider(f, "Tempo (BPM)", "tempo", 30, 220, 100)
         self.add_slider(f, "Dissonance", "chord_dissonance", 0, 1, 0.5)
         self.add_slider(f, "Chord Extensions", "chord_extensions", 0, 1, 0.5)
         self.add_slider(f, "Drum Busyness", "drum_busyness", 0, 1, 0.5)
