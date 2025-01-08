@@ -665,7 +665,7 @@ class LofiUI:
 # =============================================================================
 
 def main():
-    print("Lo-fi jam with real-time UI, sweeping synth, and very rare random mode changes.")
+    print("Lo-fi jam starting...")
     chord_mgr = ChordProgressionManager()
 
     # Producer thread
