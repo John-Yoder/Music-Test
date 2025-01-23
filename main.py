@@ -15,18 +15,18 @@ from scipy.signal import butter, filtfilt
 
 global_params = {
     "master_volume": 0.5,
-    "piano_volume": 0.5,
+    "piano_volume": 0.1,
     "bass_volume": 0.5,
-    "drum_volume": 0.5,
+    "drum_volume": 0.7,
     "noise_level": 0.5,
-    "tempo": 100,
+    "tempo": 180,
     "chord_dissonance": 0.5,
     "chord_extensions": 0.5,
     "drum_busyness": 0.5,
     # We'll default mode_cycle_speed to a small value (0.05) => very rare random mode changes
     "mode_cycle_speed": 0.05,
     "current_mode": "minor",
-    "key_root_midi": 48,
+    "key_root_midi": 36,
     # Synth volume for the new sweeping pad
     "synth_volume": 0.4,
 }
@@ -283,11 +283,11 @@ CHORD_INTERVALS = {
     "min7": ([0, 3, 7, 10], 0.9),
     "dim":  ([0, 3, 6], DIM_OR_AUG_RARE_WEIGHT),
     "aug":  ([0, 4, 8], DIM_OR_AUG_RARE_WEIGHT),
-    "9":    ([0, 4, 7, 10, 14], 0.4),
-    "11":   ([0, 4, 7, 10, 14, 17], 0.3),
-    "13":   ([0, 4, 7, 10, 14, 17, 21], 0.3),
-    "sus2": ([0, 2, 7], 0.5),
-    "sus4": ([0, 5, 7], 0.5),
+    "9":    ([0, 4, 7, 10, 14], 0.2),
+    "11":   ([0, 4, 7, 10, 14, 17], 0.1),
+    "13":   ([0, 4, 7, 10, 14, 17, 21], 0.1),
+    "sus2": ([0, 2, 7], 0.3),
+    "sus4": ([0, 5, 7], 0.3),
 }
 
 ALL_MODES = ["major", "minor", "dorian", "phrygian", "lydian", "mixolydian", "aeolian", "locrian"]
@@ -610,18 +610,18 @@ class LofiUI:
         f = self.scrollable_frame.interior
 
         self.add_slider(f, "Master Volume", "master_volume", 0, 1, 0.5)
-        self.add_slider(f, "Piano Volume", "piano_volume", 0, 1, 0.5)
+        self.add_slider(f, "Piano Volume", "piano_volume", 0, 1, 0.1)
         self.add_slider(f, "Bass Volume", "bass_volume", 0, 1, 0.5)
-        self.add_slider(f, "Drum Volume", "drum_volume", 0, 1, 0.5)
+        self.add_slider(f, "Drum Volume", "drum_volume", 0, 1, 0.7)
+        self.add_slider(f, "Synth Volume", "synth_volume", 0, 1, 0.4)
         self.add_slider(f, "Vinyl Noise", "noise_level", 0, 1, 0.5)
-        self.add_slider(f, "Tempo (BPM)", "tempo", 30, 220, 100)
+        self.add_slider(f, "Tempo (BPM)", "tempo", 30, 240, 180)
         self.add_slider(f, "Dissonance", "chord_dissonance", 0, 1, 0.5)
         self.add_slider(f, "Chord Extensions", "chord_extensions", 0, 1, 0.5)
         self.add_slider(f, "Drum Busyness", "drum_busyness", 0, 1, 0.5)
         # Mode cycle speed is small by default => rare auto-mode changes
         self.add_slider(f, "Mode Cycle Speed", "mode_cycle_speed", 0, 1, 0.05)
-        # Sweeping synth volume
-        self.add_slider(f, "Synth Volume", "synth_volume", 0, 1, 0.4)
+        
 
         # Current mode
         mode_label = tk.Label(f, text="Current Mode")
@@ -631,7 +631,7 @@ class LofiUI:
         mode_menu.pack()
 
         # Key root
-        self.add_slider(f, "Key Root MIDI", "key_root_midi", 36, 72, 48)
+        self.add_slider(f, "Key Root MIDI", "key_root_midi", 12, 72, 36)
 
         # We can place more widgets if needed
         self.root.after(100, self.update_loop)
